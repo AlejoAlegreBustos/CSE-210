@@ -13,7 +13,7 @@ class Director:
         self.guess_user=""
         self.is_playing = True
         self.score = 0
-        self.total_score = 0
+        self.total_score = 300
 
 
 
