@@ -16,7 +16,6 @@ class Director:
         self.total_score = 300
 
 
-
     def start_game(self):
         """Starts the game by running the main game loop.
 
