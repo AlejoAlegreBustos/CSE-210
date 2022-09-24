@@ -25,8 +25,8 @@ class Card():
 
         def random_card(self,guess_user):
 
-            self.current_card=random.randint(1, 7)
-            self.next_card=random.randint(1, 7)
+            self.current_card=random.randint(1, 14)
+            self.next_card=random.randint(1, 14)
             self.input_user=guess_user
 
             if self.next_card < self.current_card and self.input_user=="l" or self.next_card > self.current_card and self.input_user=="h" :
