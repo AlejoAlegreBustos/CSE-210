@@ -1,6 +1,6 @@
 from game.terminal_service import TerminalService
-from game.hider import Hider
-from game.seeker import Seeker
+from game.jumper import Jumper
+from game.puzzle import Puzzle
 
 
 class Director:
@@ -22,7 +22,7 @@ class Director:
             self (Director): an instance of Director.
         """
         # self._hider = Hider()
-        self._hider = Puzzle()
+        self._puzzler = Puzzle()
         self._is_playing = True
         # self._seeker = Seeker()
         self._jumper = Jumper()
@@ -37,7 +37,7 @@ class Director:
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
-            self._do_outputs()
+            # self._do_outputs()
 
     def _get_inputs(self):
         """Moves the seeker to a new location.
@@ -46,7 +46,7 @@ class Director:
             self (Director): An instance of Director.
         """
         new_letter = self._terminal_service.read_text("\nEnter a letter: ")
-        self._seeker.move_location(new_location)
+        self._jumper.change_letter(new_letter)
         
     def _do_updates(self):
         """Keeps watch on where the seeker is moving.
@@ -54,15 +54,15 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._hider.watch_seeker(self._seeker)
+        self._puzzler.print_jumper(self._jumper)
         
-    def _do_outputs(self):
-        """Provides a hint for the seeker to use.
+    # def _do_outputs(self):
+    #     """Provides a hint for the seeker to use.
 
-        Args:
-            self (Director): An instance of Director.
-        """
-        hint = self._hider.get_hint()
-        self._terminal_service.write_text(hint)
-        if self._hider.is_found():
-            self._is_playing = False
+    #     Args:
+    #         self (Director): An instance of Director.
+    #     """
+    #     hint = self._hider.get_hint()
+    #     self._terminal_service.write_text(hint)
+    #     if self._hider.is_found():
+    #         self._is_playing = False
