@@ -24,7 +24,7 @@ class Director:
         # self._hider = Hider()
         self._puzzler = Puzzle()
         self._is_playing = True
-        # self._seeker = Seeker()
+        self._word =""
         self._jumper = Jumper()
         self._terminal_service = TerminalService()
         
@@ -45,6 +45,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        
         new_letter = self._terminal_service.read_text("\nEnter a letter: ")
         self._jumper.change_letter(new_letter)
         
@@ -54,15 +55,23 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._puzzler.print_jumper(self._jumper)
-        
-    # def _do_outputs(self):
-    #     """Provides a hint for the seeker to use.
+        #listo la palabra
+        "checkeo letra"
+        self._word=self._puzzler.get_word()
+        # self._puzzler.check_letter(self._word, self._jumper._letter)
+        word_listed=self._puzzler.listing_word(self._word)
+        #checkeo letra me devuelve true o false para dibujar
+        self._puzzler.cartoonist(self._puzzler.check_letter(self._word, self._jumper._letter), word_listed,self._jumper._letter)
 
-    #     Args:
-    #         self (Director): An instance of Director.
-    #     """
-    #     hint = self._hider.get_hint()
-    #     self._terminal_service.write_text(hint)
-    #     if self._hider.is_found():
-    #         self._is_playing = False
+        return word_listed
+
+        
+    def _do_outputs(self):
+
+        is_alive = self._puzzler.complete_word_checker(self._do_updates())
+        
+        if is_alive == True:
+            self._is_playing = True
+        else:
+            self._is_playing = False
+            self._terminal_service.write_text("you don't complete de word")

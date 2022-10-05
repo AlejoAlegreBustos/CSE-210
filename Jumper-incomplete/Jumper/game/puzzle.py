@@ -32,55 +32,75 @@ class Puzzle:
 
         return self._word
 
-    def print_jumper(self,input_user):
+    def index_word(self,input_user):
+        word=self._word
+        index=word.find(input_user)
+        return index
+
+
+    def counter(self,true_or_false):
+        number=-1
+        if true_or_false == False:
+            number=number + 1
+            return number
+        else:
+            pass
+    
+    def check_letter(self,word_listed,input_user):
+        var=False
+        try:
+            index=word_listed.index(input_user)
+            for i in range(0,len(word_listed)):
+                if input_user == word_listed[index]:
+                    var= True
+                    break
+                else:
+                    var= False
+        except:
+            return var
+    def listing_word(self,word):
         
-        secret_word=self.get_word()
-        secret_word_listed=list(secret_word.strip())
+        secret_word=word
+        secret_word2=secret_word
+        secret_word_listed=list(secret_word2.strip())
         for i in range(0,len(secret_word_listed)):
             secret_word_listed[i]="_"
-        print(secret_word_listed)
+        return secret_word_listed
 
-        lettercount=len(secret_word_listed)
-        counter=0
-        while lettercount >> counter:
 
-            check_or_not=self.complete_word_checker(secret_word_listed)
-            if check_or_not==True:
-                print(secret_word_listed)
-                print("you win")
-                break 
-            else:    
-                if i==input_user:
-                    secret_word_listed[i]=input_user
-                    print(secret_word_listed)
-                    print("")
-                    print("      ______ ")
-                    print("")
-                    print("  /          /")
-                    print("    _____  ")
-                    print("  |       |   ")
-                    print("  |       |   ")
-                    print("   >> 0 <<")
-                    print("     -|-     ")
-                    print("     { } ")
-                    print("")
+    def cartoonist(self,letter_true_or_false,list_word,input_user):
+        parachute=["______","|","|","______"]
+        if letter_true_or_false==True:
+            index_word_replace=self.index_word(input_user)
+            list_word[index_word_replace]=input_user
+            print("")
+            print(parachute[0])
+            print(f"  {parachute[1]}          {parachute[2]}")
+            print({parachute[3]})
+            print("  |       |   ")
+            print("  |       |   ")
+            print("   >> 0 <<")
+            print("     -|-     ")
+            print("     { } ")
+            print("")
+            print(secret_word_listed)
+        else:
+            contador=self.counter(letter_true_or_false)
+            parachute[contador]=""
+            print("")
+            print(parachute[0])
+            print(f"  {parachute[1]}          {parachute[2]}")
+            print({parachute[3]})
+            print("  |       |   ")
+            print("  |       |   ")
+            print("   >> 0 <<")
+            print("     -|-     ")
+            print("     { } ")
+            print("")
 
-                else:
-                    counter+=1
-                    print("")
 
-                    print("      ______   ")
-                    print("  /          /")
-                    print("    _____  ")
-                    for i in range(0,len(secret_word_listed) - counter):
-                        print("  |       |   ")
-                    print("   >> 0 <<")
-                    print("     -|-     ")
-                    print("     { } ")
-                    print("")
 
-        
-
+      
 
 
 

@@ -5,6 +5,7 @@ class Jumper():
 
     def __init__(self):
         self._letter = ""
+        # self._life=4
 
     def get_letter(self):
 
@@ -19,3 +20,8 @@ class Jumper():
             location (int): The given location.
         """
         self._letter=new_letter
+
+    # def get_life(self):
+        
+    #     return self._life
+
