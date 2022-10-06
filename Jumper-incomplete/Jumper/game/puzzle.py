@@ -18,6 +18,7 @@ class Puzzle:
 
         self._word = random.choice(words)
         self._guessed = False
+        self.word_listed_=[]
       
     def complete_word_checker(self,word_in_list):
         for letter in word_in_list:
@@ -53,6 +54,7 @@ class Puzzle:
             for i in range(0,len(word_listed)):
                 if input_user == word_listed[index]:
                     var= True
+                    return var
                     break
                 else:
                     var= False
@@ -74,29 +76,32 @@ class Puzzle:
             index_word_replace=self.index_word(input_user)
             list_word[index_word_replace]=input_user
             print("")
+            print(list_word)
+            print("")
             print(parachute[0])
-            print(f"  {parachute[1]}          {parachute[2]}")
-            print({parachute[3]})
+            print(f"{parachute[1]}          {parachute[2]}")
+            print(parachute[3])
             print("  |       |   ")
             print("  |       |   ")
             print("   >> 0 <<")
             print("     -|-     ")
             print("     { } ")
             print("")
-            print(secret_word_listed)
+
         else:
             contador=self.counter(letter_true_or_false)
             parachute[contador]=""
             print("")
-            print(parachute[0])
-            print(f"  {parachute[1]}          {parachute[2]}")
-            print({parachute[3]})
+            print(f"      {parachute[0]}")
+            print(f"{parachute[1]}          {parachute[2]}")
+            print(f" {parachute[3]}")
             print("  |       |   ")
             print("  |       |   ")
             print("   >> 0 <<")
             print("     -|-     ")
             print("     { } ")
             print("")
+        self.word_listed_=list_word    
 
 
 

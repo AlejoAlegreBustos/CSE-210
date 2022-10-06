@@ -37,7 +37,7 @@ class Director:
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
-            # self._do_outputs()
+            self._do_outputs()
 
     def _get_inputs(self):
         """Moves the seeker to a new location.
@@ -63,12 +63,11 @@ class Director:
         #checkeo letra me devuelve true o false para dibujar
         self._puzzler.cartoonist(self._puzzler.check_letter(self._word, self._jumper._letter), word_listed,self._jumper._letter)
 
-        return word_listed
-
+        
         
     def _do_outputs(self):
 
-        is_alive = self._puzzler.complete_word_checker(self._do_updates())
+        is_alive = self._puzzler.complete_word_checker(self._puzzler.word_listed_)
         
         if is_alive == True:
             self._is_playing = True
