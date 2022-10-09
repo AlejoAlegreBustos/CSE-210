@@ -12,6 +12,7 @@ class Artifact(Actor):
         self._position= super().__init__()
         self._artifact_element=""
         self.message=""
+        self.points=0
 
     def set_position(self, position):
         """Updates the position to the given one.
@@ -30,18 +31,20 @@ class Artifact(Actor):
         return self._position
 
     
-    def set_message(self,message):
-        self._message=message
+    def set_message(self):
+        self.message=str(self.points)
+
 
     def get_message(self):
         """Gets the actor's textual representation.
-        
+            
         Returns:
             string: The actor's textual representation.
         """
-        return self._message
+        return self.message
 
     def set_text(self,text):
+        
         self._text= text
 
     def get_text(self):
@@ -51,6 +54,17 @@ class Artifact(Actor):
             string: The actor's textual representation.
         """
         return self._text
+    
+    def set_points(self):
+        if self._text == "$":
+            self.points= int(self.points) + 100
+        else:
+            self.points=int(self.points) - 75
+        
+
+    def get_points(self):
+
+        return self.points
 
 
     def set_font_size(self,font_size):
